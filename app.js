@@ -2,14 +2,19 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const app = express()
 const PORT = 3000
+require('./config/mongoose')
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
 app.get('/', (req, res) => {
-    res.render('index')
+  res.render('index')
+})
+
+app.post('/shorten', (req, res) => {
+  
 })
 
 app.listen(PORT, (req, res) => {
-    console.log(`App is running on http://localhost:${PORT}`)
+  console.log(`App is running on http://localhost:${PORT}`)
 })
