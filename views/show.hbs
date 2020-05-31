@@ -1,9 +1,15 @@
 <div class="container text-center mt-5">
-  <div class="form group">
-    <h3>Success! Please use this link:</h3>
-    <a href="{{ newURL }}">{{ newURL }}</a>
-    <button type="button" class="btn btn-primary">Copy</button>
-    <a href="/" class="btn btn-outline-primary">Back</a>
+  <div class="form group row">
+    <div class="col-12">
+      <h3>Success! Please use this link:</h3>
+    </div>
+    <div class="col-12 alert alert-success">
+      <a href="/{{ newURL }}">{{ newURL }}</a>
+      <button type="button" class="btn btn-primary">Copy</button>
+    </div>
+    <div class="col-12">
+      <a href="/" class="btn btn-outline-primary">Back</a>
+    </div>
   </div>
 </div>
  

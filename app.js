@@ -27,18 +27,23 @@ app.post('/', (req, res) => {
   if (inputURL === '') {
     let errMessage = "Please enter the URL!!"
     res.render('index', { errMessage, inputURL })
-    return 
+    return
   } else if (inputURL.includes("https://") || inputURL.includes("http://")){    
   } else {
     let errMessage = "This is not an URL! Please enter again ( https://... OR http://... )"
     res.render('index', { errMessage, inputURL })
-    return 
+    return
   }
 
   return Url.find()
     .lean()
     .then((url) => {
       url.forEach(u => {
+        // if (u.originURL === inputURL) {
+        //   let errMessage = `This URL was already shortened: ${u.shortenedURL}`
+        //   res.render('index', { errMessage, inputURL })
+        //   return
+        // }
         while( u.shortenedURL.includes( shortenedURL )) {
           shortenedURL = generateURL()
         }
@@ -51,7 +56,20 @@ app.post('/', (req, res) => {
 })
 
 // 在伺服器啟動期間，使用者輸入短網址可進入原網址頁面
-
+app.get('/:code', (req, res) => {
+  const code = req.params.code
+  Url.findOne({ shortenedURL: code})
+    .lean()
+    .then(u => {
+      if (u) {
+        url = u.originURL
+        res.redirect(`${url}`)
+      } else { // 轉跳失敗
+        res.send('Error')
+      } 
+    })
+    .catch(error => console.log(error))
+})
 
 app.listen(PORT, (req, res) => {
   console.log(`App is running on http://localhost:${PORT}`)
