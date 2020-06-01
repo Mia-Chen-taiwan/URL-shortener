@@ -22,7 +22,7 @@
 
 1. 終端機輸入
 ```
-git clone https://github.com/Mia-Chen-taiwan/expense-tracker.git
+git clone https://github.com/Mia-Chen-taiwan/URL-shortener.git
 ```
 
 2. 安裝套件
