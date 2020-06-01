@@ -54,7 +54,7 @@ router.post('/', (req, res) => {
   // 在伺服器啟動期間，使用者輸入短網址可進入原網址頁面
 router.get('/:code', (req, res) => {
   const code = req.params.code
-  Url.findOne({ shortenedURL: code})
+  Url.findOne({ shortenedURL: indexURL + code})
     .lean()
     .then(u => {
       if (u) {
