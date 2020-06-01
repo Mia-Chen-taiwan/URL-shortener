@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Url = require('../../models/url')
 const generateURL = require('./generateURL')
+const indexURL = 'https://boiling-shelf-65146.herokuapp.com/'
 
 router.get('/', (req, res) => {
   const inputURL = ''
@@ -26,14 +27,14 @@ router.post('/', (req, res) => {
         return res.render('index', { errMessage, inputURL })
       } else {
         // 沒有則新增一筆
-        let shortenedURL = generateURL() 
+        let shortenedURL = generateURL(indexURL) 
         // 防止重複短網址出現
         Url.find()
           .lean()
           .then((url) => {
             url.forEach(u => {
               while( u.shortenedURL.includes( shortenedURL )) {
-                shortenedURL = generateURL()
+                shortenedURL = generateURL(indexURL)
               }
               return shortenedURL
             })

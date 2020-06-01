@@ -3,7 +3,7 @@ function sample(array) {
   return array[index]
 }
 
-function generateURL (){
+function generateURL (indexURL){
   // 定義亂碼所需元素
   const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'
   const upperCaseLetters = lowerCaseLetters.toUpperCase()
@@ -20,7 +20,7 @@ function generateURL (){
   }
 
   // 輸出短網址
-  return  randomCode
+  return  indexURL + randomCode
 }
 
 module.exports = generateURL
