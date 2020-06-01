@@ -1,16 +1,20 @@
-<div class="container text-center mt-5">
+<div class="container text-center d-flex justify-content-center mt-5">
   <form action="/" method="POST">
-  <div class="form-group row mt-5 justify-content-center">
-    <input type="text" class="form-control" placeholder="Input URL here" name="inputURL" value="{{ inputURL }}">
-    <a href="/show">
-      <button type="submit" class="btn btn-outline-primary mt-5">Shorten</button>
+  <div class="form-group d-flex row justify-content-center mt-5" style="width: 500px;">
+    <div class="col-12">
+      <input type="text" class="form-control" placeholder="Input URL here" name="inputURL" value="{{ inputURL }}">
+    </div>
+    <div class="col-12 mt-3">
+      {{#if errMessage}}
+      <div class="alert alert-danger" role="alert">
+        {{ errMessage }}
+      </div>
+      {{/if}}
+    </div>
+    <a class="col mt-2" href="/show">
+      <button type="submit" class="btn btn-outline-primary">Shorten</button>
     </a> 
   </div>
   </form>
-  {{#if errMessage}}
-  <div class="alert alert-danger" role="alert">
-    {{ errMessage }}
-  </div>
-  {{/if}}
 </div>
  
