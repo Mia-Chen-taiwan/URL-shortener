@@ -1,15 +1,25 @@
-<div class="container text-center mt-5">
-  <div class="form group row">
+<div class="container text-center mt-5 d-flex justify-content-center">
+  <div class="form group row" style="width: 500px;">
     <div class="col-12">
       <h3>Success! Please use this link:</h3>
     </div>
-    <div class="col-12 alert alert-success">
-      <a href="/{{ newURL }}">{{ newURL }}</a>
-      <button type="button" class="btn btn-primary">Copy</button>
+    <div class="col-12 mt-2 input-group">
+      <input type="text" class="form-control" id="shortURL" value="{{ newURL }}"></input>
+      <div class="input-group-append">
+        <button type="button" class="btn btn-primary" onclick="copyURL()">Copy</button>
+      </div>
     </div>
-    <div class="col-12">
+    <div class="col-12 mt-3">
       <a href="/" class="btn btn-outline-primary">Back</a>
     </div>
   </div>
 </div>
+
+<script>
+  function copyURL() {
+    const target = document.getElementById('shortURL')
+    target.select()
+    document.execCommand('copy')
+  }
+</script>
  

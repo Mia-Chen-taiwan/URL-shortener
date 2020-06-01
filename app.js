@@ -21,29 +21,19 @@ app.get('/', (req, res) => {
 // 輸入之後製造短網址，建立一筆資料，渲染結果到頁面上
 app.post('/', (req, res) => {
   const inputURL = req.body.inputURL
-  let shortenedURL = generateURL()
-
-  // 防止空白輸入或不符的輸入
-  if (inputURL === '') {
+  
+  
+  if (inputURL === '') { // 空白輸入
     let errMessage = "Please enter the URL!!"
     res.render('index', { errMessage, inputURL })
     return
-  } else if (inputURL.includes("https://") || inputURL.includes("http://")){    
-  } else {
-    let errMessage = "This is not an URL! Please enter again ( https://... OR http://... )"
-    res.render('index', { errMessage, inputURL })
-    return
-  }
-
-  return Url.find()
+  } else if (inputURL.includes("https://") || inputURL.includes("http://")){
+    let shortenedURL = generateURL() 
+    return Url.find()
     .lean()
     .then((url) => {
       url.forEach(u => {
-        // if (u.originURL === inputURL) {
-        //   let errMessage = `This URL was already shortened: ${u.shortenedURL}`
-        //   res.render('index', { errMessage, inputURL })
-        //   return
-        // }
+        // 防止重複短網址出現
         while( u.shortenedURL.includes( shortenedURL )) {
           shortenedURL = generateURL()
         }
@@ -52,7 +42,15 @@ app.post('/', (req, res) => {
     })
     .then(() => Url.create({ originURL:inputURL, shortenedURL }))
     .then(() => res.render('show', { newURL: shortenedURL }))
-    .catch(error => console.log(error))
+    .catch(error => console.log(error))     
+  } else { // 不符的輸入
+    let errMessage = "This is not an URL! Please enter again </br> ( https://... OR http://... )"
+    res.render('index', { errMessage, inputURL })
+    return
+  }
+
+  
+    
 })
 
 // 在伺服器啟動期間，使用者輸入短網址可進入原網址頁面
