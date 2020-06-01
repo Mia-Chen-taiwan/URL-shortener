@@ -4,8 +4,8 @@ const Url = require('../../models/url')
 const generateURL = require('./generateURL')
 
 router.get('/', (req, res) => {
-    const inputURL = ''
-    res.render('index')
+  const inputURL = ''
+  res.render('index')
 })
 
 // 輸入之後製造短網址，建立一筆資料，渲染結果到頁面上
