@@ -60,7 +60,7 @@ router.get('/:code', (req, res) => {
         url = u.originURL
         res.redirect(`${url}`)
       } else { // 轉跳失敗
-        res.send('Error')
+        res.render('error')
       } 
     })
     .catch(error => console.log(error))
